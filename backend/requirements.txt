@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+pydantic
+python-multipart
+nltk
+scikit-learn
+PyMuPDF
+python-docx
+rouge-score
+networkx
