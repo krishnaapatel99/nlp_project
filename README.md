@@ -33,6 +33,12 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+Configure backend environment variables (create `.env` from `.env.example`):
+```bash
+cp .env.example .env   # Or copy in Windows: copy .env.example .env
+```
+*(Variables include `PORT`, `HOST`, `ALLOWED_ORIGINS`, `APP_TITLE`)*
+
 Download spaCy model:
 ```bash
 python -m spacy download en_core_web_sm
@@ -50,6 +56,16 @@ python -m uvicorn app.main:app --reload
 ```bash
 cd frontend
 npm install
+```
+
+Configure frontend environment variables (create `.env` from `.env.example`):
+```bash
+cp .env.example .env   # Or copy in Windows: copy .env.example .env
+```
+*(Variables include `VITE_API_URL`)*
+
+Run Frontend:
+```bash
 npm run dev
 ```
 *Frontend runs on http://localhost:5173*

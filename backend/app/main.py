@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.routes import extraction, nlp, summarization, evaluation
+from app.config import APP_TITLE, ALLOWED_ORIGINS, HOST, PORT
 import nltk
 
 def download_nltk_resources():
@@ -16,11 +17,11 @@ def download_nltk_resources():
             
 download_nltk_resources()
 
-app = FastAPI(title="NLP Text Summarizer")
+app = FastAPI(title=APP_TITLE)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -34,3 +35,7 @@ app.include_router(evaluation.router, prefix="/api/evaluate", tags=["Evaluation"
 @app.get("/")
 def read_root():
     return {"message": "Welcome to NLP Text Summarizer API"}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("app.main:app", host=HOST, port=PORT, reload=True)
